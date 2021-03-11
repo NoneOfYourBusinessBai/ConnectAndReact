@@ -1,0 +1,62 @@
+body{
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1{
+  text-align: center;
+  padding-top: 20px;
+}
+
+
+#block_container
+{
+  text-align:center;
+}
+#bloc1, #game-board
+{
+  display:inline;
+}
+
+#game-board {
+background: #ee99a0;
+width: 555px;
+height: 440px;
+cursor: pointer;
+display: inline-block;
+/*margin-left: 100px;*/
+margin-top: 0px;
+position: static;
+}
+
+svg{
+margin-bottom: -30px;
+margin-left: -20px;
+}
+
+circle{
+stroke: #ad6c80;
+stroke-width: 3;
+
+}
+
+.column {
+width: 60px;
+display: inline-block;
+
+}
+
+.column:hover  circle.free{
+fill: #f7d3e4;
+}
+
+circle.free {
+fill: #fff;
+}
+
+circle.pink {
+fill: #822659;
+}
+
+circle.purple {
+fill: #350b40;
+}
