@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 const refreshPage = () => {
   window.location.reload();
 }
@@ -33,7 +33,7 @@ function checkDir(x, y, dir, color, boardState) {
   let i = 1;
   let c = 0;
   let tx = x;
-  if (dir == 0) {
+  if (dir === 0) {
     while (checkColor(tx - i, y, color, boardState )) {
       c++;
       i++;
@@ -53,7 +53,7 @@ function checkDir(x, y, dir, color, boardState) {
    i = 1;
    c = 0;
    tx = y;
-  if (dir == 2) {
+  if (dir === 2) {
     while (checkColor(x, tx - i, color, boardState)) {
       c++;
       i++;
@@ -73,7 +73,7 @@ function checkDir(x, y, dir, color, boardState) {
   i = 1;
   c = 0;
   tx = y;
- if (dir == 4) {
+ if (dir === 4) {
    while (checkColor(x-i, tx - i, color, boardState)) {
      c++;
      i++;
@@ -92,7 +92,7 @@ function checkDir(x, y, dir, color, boardState) {
  i = 1;
  c = 0;
  tx = y;
-if (dir == 6) {
+if (dir === 6) {
   while (checkColor(x-i, tx + i, color, boardState)) {
     c++;
     i++;
@@ -119,24 +119,22 @@ class Home extends React.Component {
 
  
   clicksito(row, col) {
-    if(this.state.acabado == true)
-    return;
-    const status = this.state.currentPlayer ? 'pink' : 'purple';
+    if(this.state.acabado) return;
+    
     const lastPosition = this.boardState[col].filter((circle) => circle === 'free').length - 1;
-    this.boardState[col][lastPosition] = this.state.currentPlayer ? 'pink' : 'purple';
 
-    let x = col;
-    let y = lastPosition;
-    let color = this.state.currentPlayer ? 'pink' : 'purple';
-    if (hasWin(x,y,color,this.boardState)) {
-     
-      console.log(color + " ha ganado");
-      this.setState({
-        mensajito: 'Winner: ' + color,
-        acabado: true
-        
-      });
-    }
+    if(lastPosition >= 0) {
+      this.boardState[col][lastPosition] = this.state.currentPlayer ? 'pink' : 'purple';
+
+      let x = col;
+      let y = lastPosition;
+      let color = this.state.currentPlayer ? 'pink' : 'purple';
+      if (hasWin(x,y,color,this.boardState)) {
+        this.setState({
+          mensajito: 'Winner: ' + color,
+          acabado: true
+        });
+      }
 
       this.setState({
         currentPlayer: !this.state.currentPlayer,
@@ -144,6 +142,7 @@ class Home extends React.Component {
         boardState: [...this.boardState]
         
       });
+    }
   }
 
 
